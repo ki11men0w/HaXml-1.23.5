@@ -1,5 +1,3 @@
-{-# LANGUAGE CPP #-}
-#define dummy		-- just to ensure that cpp gets called on this file
 module Text.XML.HaXml.Wrappers
   ( fix2Args
   , processXmlWith
@@ -22,6 +20,8 @@ import Text.XML.HaXml.Html.Parse  (htmlParse)
 import Text.XML.HaXml.Pretty as PP(document)
 import Text.PrettyPrint.HughesPJ  (render)
 
+import Paths_HaXml (version)
+import Data.Version (showVersion)
 
 -- | This useful auxiliary checks the commandline arguments for two
 --   filenames, the input and output file respectively.  If either
@@ -31,7 +31,7 @@ fix2Args :: IO (String,String)
 fix2Args = do
   args <- getArgs
   when ("--version" `elem` args) $ do
-      putStrLn $ "part of HaXml-"++ VERSION
+      putStrLn $ "part of HaXml-"++ showVersion version
       exitWith ExitSuccess
   when ("--help" `elem` args) $ do
       putStrLn $ "See http://projects.haskell.org/HaXml"

@@ -1,5 +1,3 @@
-{-# LANGUAGE CPP #-}
-#define dummy	-- just to ensure cpp gets called on this file
 -- | This is just a convenient way of bunching the XML combinators
 --   together with some other things you are likely to want at the
 --   same time.
@@ -31,7 +29,9 @@ import Text.XML.HaXml.Escape
 
 import Text.PrettyPrint.HughesPJ  (render)
 
+import qualified Paths_HaXml as P (version)
+import Data.Version (showVersion)
+
 -- | The version of the library.
 version :: String
-version  = VERSION
-		-- expect cpp to fill in value
+version = showVersion P.version
